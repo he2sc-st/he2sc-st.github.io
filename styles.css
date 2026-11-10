@@ -169,12 +169,20 @@ a {
 }
 
 .eyebrow {
-  margin: 0 0 0.9rem;
-  color: var(--tissue);
-  font-size: 0.8rem;
+  margin: 0 0 1.75rem;
+  color: var(--ink);
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+}
+
+.eyebrow a {
+  color: inherit;
+}
+
+.eyebrow-highlight {
+  color: var(--tissue);
 }
 
 /* ---- Headings ---- */
@@ -188,9 +196,9 @@ h3 {
 h1 {
   max-width: 1040px;
   margin-right: auto;
-  margin-bottom: 1.25rem;
+  margin-bottom: 2rem;
   margin-left: auto;
-  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-size: clamp(2.25rem, 4.6vw, 3.6rem);
   font-weight: 760;
   line-height: 1.2;
 }
@@ -960,4 +968,42 @@ pre {
 .author a:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+.author sup {
+  margin-left: 0.05em;
+}
+
+#abstract h2,
+#conclusion h2 {
+  text-align: center;
+}
+
+.citation-title {
+  text-align: center;
+}
+
+.code-wrap {
+  position: relative;
+}
+
+.code-wrap .copy-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  margin: 0;
+}
+
+.abstract-text {
+  text-align: justify;
+  text-align-last: center;
+  text-wrap: pretty;
+}
+
+.conclusion-text {
+  text-align: center;
+}
+
+#abstract .text-shell {
+  max-width: 840px;
 }
