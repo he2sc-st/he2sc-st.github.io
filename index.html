@@ -1,93 +1,371 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test page</title>
-  <style>
-    :root {
-      --bg: #eef3f1;
-      --ink: #1d2b27;
-      --muted: #5b6b66;
-      --ok: #2f7d5b;
-      --fail: #b23a3a;
-      --panel: #ffffff;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        color-scheme: dark;
-        --bg: #16201d;
-        --ink: #e4ece9;
-        --muted: #9aaba5;
-        --ok: #6cc79c;
-        --fail: #e57b7b;
-        --panel: #1f2b27;
-      }
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      padding: 1.5rem;
-    }
-    main {
-      background: var(--panel);
-      border-radius: 12px;
-      padding: 2rem;
-      width: min(100%, 28rem);
-    }
-    h1 { margin: 0 0 0.25rem; font-size: 1.75rem; }
-    p { margin: 0 0 1.5rem; color: var(--muted); }
-    ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
-    li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid color-mix(in srgb, var(--muted) 25%, transparent);
-    }
-    .ok { color: var(--ok); font-weight: 600; }
-    .fail { color: var(--fail); font-weight: 600; }
-    button {
-      font: inherit;
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 8px;
-      background: var(--ok);
-      color: var(--panel);
-      cursor: pointer;
-    }
-    button:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
-    #count { margin-left: 0.75rem; color: var(--muted); }
-  </style>
+  <meta name="description" content="Project page for Predicting Single-Cell Spatial Gene Expression from H&amp;E using Pathology Foundation Models.">
+  <title>Predicting Single-Cell Spatial Gene Expression from H&amp;E</title>
+
+  <!-- Social preview. Replace SITE_URL with the page's public address; og:image must be an absolute URL. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Predicting Single-Cell Spatial Gene Expression from H&amp;E using Pathology Foundation Models">
+  <meta property="og:description" content="Lightweight adaptations of pathology foundation models improve single-cell gene expression prediction from H&amp;E by 2.67× over the zero-shot baseline on Xenium 5K data.">
+  <meta property="og:url" content="https://SITE_URL/">
+  <meta property="og:image" content="https://SITE_URL/assets/figures/fig1_tls.png">
+  <meta property="og:image:alt" content="H&amp;E image of a tertiary lymphoid structure beside measured and predicted expression maps for four marker genes.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Predicting Single-Cell Spatial Gene Expression from H&amp;E">
+  <meta name="twitter:description" content="Adapting pathology foundation models for single-cell spatial gene expression prediction from routine histology.">
+  <meta name="twitter:image" content="https://SITE_URL/assets/figures/fig1_tls.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <h1>It works.</h1>
-    <p>If you can read this, the page loaded!</p>
-    <ul>
-      <li>HTML <span class="ok">Loaded</span></li>
-      <li>CSS <span class="ok">Applied</span></li>
-      <li>JavaScript <span id="js" class="fail">Not running</span></li>
-      <li>Loaded at <span id="time">—</span></li>
-    </ul>
-    <button id="btn" type="button">Click to test</button>
-    <span id="count">0 clicks</span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Project sections">
+    <a class="nav-mark" href="#top" aria-label="Back to top">
+      <span class="nav-mark-dot" aria-hidden="true"></span>
+      <span>H&amp;E to single-cell spatial transcriptomics</span>
+    </a>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Approach</a>
+      <a href="#results">Results</a>
+      <a href="#analysis">Analyses</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- 1. Hero -->
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <p class="eyebrow"><a href="https://asci.artificialintelligencepathology.org/">NeurIPS 2026 Workshop on AI at Scale for Clinical Impact</a></p>
+        <p class="award-badge">Spotlight oral presentation</p>
+        <h1>Predicting Single-Cell Spatial Gene Expression from H&amp;E using Pathology Foundation Models</h1>
+
+        <div class="authors" aria-label="Authors">
+          <span class="author"><a href="https://ashtsang.github.io/" target="_blank" rel="noopener">Ashley P. Tsang</a><sup>1,2,*</sup></span>          
+          <span class="author"><a href="https://www.linkedin.com/in/evanliu518/" target="_blank" rel="noopener">Evan Liu</a><sup>3</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/conradfoo/" target="_blank" rel="noopener">Conrad Foo</a><sup>4</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/bob-chen-252a2250/" target="_blank" rel="noopener">Bob Chen</a><sup>1</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/hmaan/" target="_blank" rel="noopener">Hassaan Maan</a><sup>1</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/donny-chan/" target="_blank" rel="noopener">Donny Chan</a><sup>1</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/elisa-penna/" target="_blank" rel="noopener">Elisa Penna</a><sup>4</sup></span>
+          <span class="author">Veronica Ibarra Lopez</a><sup>4</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/hcorrada/" target="_blank" rel="noopener">Hector Corrada Bravo</a><sup>1</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/aichabt/" target="_blank" rel="noopener">Aïcha BenTaieb<sup>1</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/lisa-mcginnis-370557a1/" target="_blank" rel="noopener">Lisa M. McGinnis</a><sup>4</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/runmin-wei-7295249b/" target="_blank" rel="noopener">Runmin Wei</a><sup>1,†</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/kennethgao/" target="_blank" rel="noopener">Kenneth T. Gao</a><sup>1,†</sup></span>
+        </div>
+
+        <div class="affiliations">
+          <p><sup>1</sup> AI for Biology &amp; Translation, Computational Sciences Center of Excellence, Genentech</p>
+          <p><sup>2</sup> Gilbert S. Omenn Department of Computational Medicine &amp; Bioinformatics, University of Michigan</p>
+          <p><sup>3</sup> Computational Biology &amp; Medicine, Computational Sciences Center of Excellence, Genentech</p>
+          <p><sup>4</sup> Digital and Spatial Pathology, Translational Genomics and Proteomics, gRED, Genentech</p>
+          <p class="author-notes"><sup>*</sup> Work conducted during an internship at Genentech.</p>
+          <p class="author-notes-follow"><sup>†</sup> Corresponding author.</p>
+        </div>
+
+        <div class="hero-links" aria-label="Paper resources">
+          <!-- Replace with the proceedings link when available. -->
+          <a class="pill" href="assets/paper.pdf">Paper</a>
+          <!-- Replace REPLACE_ME with the arXiv ID, e.g. 2606.01234. -->
+          <a class="pill" href="https://arxiv.org/abs/REPLACE_ME">arXiv</a>
+          <a class="pill pill-secondary" href="#citation">BibTeX</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Teaser -->
+    <section class="teaser wide-shell" aria-labelledby="teaser-title">
+      <figure class="hero-figure">
+        <img src="assets/figures/fig1_tls.png" alt="H&amp;E image of a tertiary lymphoid structure beside measured and predicted expression maps for MS4A1, CCL21, MZB1, and CXCL9.">
+        <figcaption>
+          <strong id="teaser-title">Predicting single-cell spatial gene expression from routine H&amp;E.</strong>
+          Our model introduces a set of domain-informed, lightweight adaptations to pathology foundation models for single-cell spatial gene expression prediction from H&amp;E. In this tertiary lymphoid structure, our model recovers the spatial expression patterns of B-cell (MS4A1), plasma-cell (MZB1), and immune-recruitment (CCL21, CXCL9) markers from routine H&amp;E alone.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- 3. TL;DR + abstract -->
+    <section class="section compact-section" id="abstract">
+      <div class="text-shell">
+      <!--
+        <p class="tldr"><strong>TL;DR:</strong> Five lightweight, domain-informed adaptations improve how well pathology foundation models predict single-cell gene expression from routine H&amp;E, raising mean per-gene correlation 2.67× over the zero-shot baseline.</p>
+      -->
+        <h2>Abstract</h2>
+        <p class="abstract-text">Predicting gene expression directly from hematoxylin and eosin (H&amp;E) images offers a scalable and cost-effective approach to deriving spatial molecular insights from routine histology. Pathology foundation models, typically pretrained using tile-level objectives, may not adequately capture the fine-grained cellular features required for single-cell molecular prediction. In this work, we systematically evaluate and establish domain-informed and task-specific strategies for adapting pathology foundation models to single-cell spatial gene expression prediction. Using paired H&amp;E and Xenium 5K data, our approach improves mean gene-wise Pearson correlation by 2.67× over the standard zero-shot baseline and achieves state-of-the-art performance on this task. We demonstrate strong gene-detection performance across the full gene panel (AUROC = 0.800) and importantly identify that predictive performance varies substantially across biological contexts, with our model achieving its highest Pearson correlation for spatially variable genes (<em>r</em> = 0.643). Our findings demonstrate that, despite the challenges of sparse single-cell measurements, H&amp;E-derived representations can recover biologically meaningful spatial expression patterns, highlighting both the opportunities and limitations of morphology-based molecular inference at cellular resolution.</p>
+      </div>
+    </section>
+    
+
+    <!-- 4. The resolution gap -->
+    <section class="section soft-section" aria-labelledby="gap-title">
+      <div class="content-shell">
+        <div class="section-heading centered">
+          <h2 id="gap-title">Bridging the resolution gap between spot- and single-cell level prediction</h2>
+          <p>Existing pathology foundation models do not natively transfer to single-cell expression prediction. Their embeddings are suited to regional, spot-level prediction and are not optimized for the fine-grained cellular detail that single-cell prediction requires.</p>
+        </div>
+
+        <figure class="paper-figure figure-box">
+          <img src="assets/figures/fig3_baseline.png" alt="Plots comparing frozen pathology foundation model performance at pseudo-spot and single-cell resolutions across gene panels and sparsity levels." loading="lazy">
+          <figcaption>
+            <strong>Frozen embeddings transfer far better to spots than to single cells.</strong>
+            On the same Xenium data, a linear probe reaches a mean per-gene PCC of 0.375 on 55 μm pseudo-spots but only 0.065 at the single-cell level across the 5K panel. (a) Performance across gene panels. (b) Per-gene performance as expression becomes sparser.
+          </figcaption>
+        </figure>
+
+        <div class="data-setup">
+          <h3>Data and evaluation</h3>
+          <p>Using paired H&amp;E and Xenium 5K spatial transcriptomics data from colon tissue of patients with inflammatory bowel disease, we study how to adapt existing pathology foundation models for single-cell prediction. We evaluate performance throughout on four gene panels:</p>
+
+          <dl class="panel-key" aria-label="Gene panels used for evaluation">
+            <div>
+              <dt>SVG50</dt>
+              <dd>Top 50 spatially variable genes</dd>
+            </div>
+            <div>
+              <dt>IBD</dt>
+              <dd>76 literature-derived IBD-relevant genes</dd>
+            </div>
+            <div>
+              <dt>HVG50</dt>
+              <dd>Top 50 highly variable genes</dd>
+            </div>
+            <div>
+              <dt>5K</dt>
+              <dd>All 5,101 genes in the panel</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Approach -->
+    <section class="section" id="method">
+      <div class="content-shell">
+        <div class="section-heading centered">
+          <h2>Adapting tile-level pathology foundation models for single-cell predictions</h2>
+          <p>We introduce a set of domain-informed, task-specific cumulative adaptations that align pathology foundation models with single-cell expression prediction.</p>
+        </div>
+
+        <figure class="paper-figure framework-figure">
+          <img src="assets/figures/fig2_framework.png" alt="Framework diagram showing a 40× H&amp;E crop centered on one cell, pathology foundation model encoding, cell-token pooling, LoRA fine-tuning, an MLP with Poisson loss, and a 5K-gene output." loading="lazy">
+          <figcaption>
+            <strong>Framework for predicting single-cell gene expression from H&amp;E images.</strong>
+            We integrate domain-informed design choices including high-resolution inputs, parameter-efficient encoder fine-tuning, cell-localized features, and a Poisson-trained MLP to predict expression across 5K genes.</figcaption>
+        </figure>
+
+        <ol class="adaptation-ladder" aria-label="Cumulative model adaptations">
+          <li>
+            <span class="step-number">01</span>
+            <strong>Cell-localized tokens</strong>
+            <span>Patch tokens inside each cell boundary are mean pooled.</span>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <strong>40× input</strong>
+            <span>A 47.6 μm field of view keeps cellular detail and local context.</span>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <strong>Poisson objective</strong>
+            <span>Raw transcript counts are modeled directly.</span>
+          </li>
+          <li>
+            <span class="step-number">04</span>
+            <strong>LoRA fine-tuning</strong>
+            <span>Low-rank adapters tune the encoder for cell-level prediction.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. Results -->
+    <section class="section soft-section" id="results">
+      <div class="content-shell">
+        <div class="section-heading centered">
+          <h2>Strong gains over the baseline and prior methods</h2>
+          <p>Our adapted model substantially outperformed the pre-adaptation baseline, improving performance by 2.67x on the 5K panel, and showing substantial gains across all gene panels. We also achieve SOTA performance for this task across all computed metrics and gene panels.</p>
+        </div>
+
+        <!-- Result 1: cumulative adaptations vs. competing methods -->
+        <article class="data-panel stacked-panel">
+          <h3>Each adaptation builds on the previous, yielding cumulative gains</h3>
+          <p class="panel-lead">Starting from a frozen linear-probe baseline, each adaptation improves mean per-gene PCC, and the full model outperforms competing methods across all gene panels.</p>
+          <div class="table-wrap" tabindex="0" aria-label="Scrollable cumulative adaptation table">
+            <table>
+              <thead>
+                <tr><th scope="col">Model</th><th scope="col">SVG50</th><th scope="col">IBD</th><th scope="col">HVG50</th><th scope="col">5K</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>OmiCLIP</td><td>0.207</td><td>0.072</td><td>0.057</td><td>0.029</td></tr>
+                <tr><td>BLEEP</td><td>0.349</td><td>0.160</td><td>0.117</td><td>0.065</td></tr>
+                <tr><td>GHIST</td><td>0.505</td><td>0.167</td><td>0.087</td><td>0.081</td></tr>
+                <tr><td>SpatialEx</td><td>0.509</td><td>0.207</td><td>0.158</td><td>0.094</td></tr>
+              </tbody>
+              <tbody class="group-start">
+                <tr><td>Baseline<sup>†</sup></td><td>0.469</td><td>0.182</td><td>0.151</td><td>0.065</td></tr>
+                <tr>
+                  <td>+ MLP</td>
+                  <td>0.525<span class="delta">(+12.0%)</span></td>
+                  <td>0.235<span class="delta">(+28.8%)</span></td>
+                  <td>0.195<span class="delta">(+29.5%)</span></td>
+                  <td>0.110<span class="delta">(+69.0%)</span></td>
+                </tr>
+                <tr>
+                  <td>+ cell pooling</td>
+                  <td>0.583<span class="delta">(+10.9%)</span></td>
+                  <td>0.285<span class="delta">(+21.6%)</span></td>
+                  <td>0.253<span class="delta">(+29.5%)</span></td>
+                  <td>0.135<span class="delta">(+22.6%)</span></td>
+                </tr>
+                <tr>
+                  <td>+ 40×</td>
+                  <td>0.602<span class="delta">(+3.3%)</span></td>
+                  <td>0.298<span class="delta">(+4.4%)</span></td>
+                  <td>0.248<span class="delta delta-negative">(−1.8%)</span></td>
+                  <td>0.146<span class="delta">(+7.8%)</span></td>
+                </tr>
+                <tr>
+                  <td>+ Poisson</td>
+                  <td>0.618<span class="delta">(+2.7%)</span></td>
+                  <td>0.324<span class="delta">(+8.8%)</span></td>
+                  <td>0.301<span class="delta">(+21.0%)</span></td>
+                  <td>0.161<span class="delta">(+10.6%)</span></td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>+ LoRA (ours)</td>
+                  <td>0.643<span class="delta">(+4.0%)</span></td>
+                  <td>0.356<span class="delta">(+9.7%)</span></td>
+                  <td>0.338<span class="delta">(+12.5%)</span></td>
+                  <td>0.174<span class="delta">(+7.9%)</span></td>
+                </tr>
+                <tr class="summary-row">
+                  <td>Baseline → Ours</td>
+                  <td>+37.1%</td>
+                  <td>+95.6%</td>
+                  <td>+124.2%</td>
+                  <td>+166.7%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Mean per-gene PCC. The upper block lists competing methods. In the lower block, each row adds one adaptation to the row above, and percentages in parentheses are relative to the preceding row. <sup>†</sup> Frozen model baseline: linear probe, CLS token embeddings, 20x input, MSE loss, no fine-tuning.</p>
+        </article>
+
+        <!-- Result 2: generalization across foundation models -->
+        <figure class="paper-figure figure-box stacked-panel">
+          <img src="assets/figures/fig4_generalization.png" alt="Four line plots, one per gene panel (SVG50, IBD, HVG50, 5K), showing mean per-gene PCC rising across each adaptation step for H-Optimus-0, Prov-GigaPath, and DINOv3." loading="lazy">
+          <figcaption>
+            <strong>The adaptations generalize across foundation models.</strong>
+            The same sequence of adaptations improves mean per-gene PCC on every gene panel for H-Optimus-0, Prov-GigaPath, and DINOv3, a general-purpose vision model not trained on histology.
+          </figcaption>
+        </figure>
+
+        <!-- Result 3: 5K benchmark -->
+        <article class="data-panel stacked-panel">
+          <h3>Benchmark on the full 5K panel</h3>
+          <p class="panel-lead">The full model achieves the best performance on every metric. Even without LoRA fine-tuning, the frozen adapted model ranks second, so the single-cell adaptations alone substantially improve on existing approaches.</p>
+          <div class="table-wrap" tabindex="0" aria-label="Scrollable model benchmark table">
+            <table>
+              <thead>
+                <tr><th scope="col">Model</th><th scope="col" class="text-left">Native granularity</th><th scope="col">Gene PCC</th><th scope="col">Cell PCC</th><th scope="col">AUROC</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>OmiCLIP</td><td class="text-left">Spot-level</td><td>0.029 <span class="sd">± 0.006</span></td><td>0.203 <span class="sd">± 0.026</span></td><td>0.568 <span class="sd">± 0.016</span></td></tr>
+                <tr><td>BLEEP</td><td class="text-left">Spot-level</td><td>0.065 <span class="sd">± 0.041</span></td><td>0.124 <span class="sd">± 0.078</span></td><td>0.578 <span class="sd">± 0.062</span></td></tr>
+                <tr><td>GHIST</td><td class="text-left">Single-cell</td><td>0.081 <span class="sd">± 0.007</span></td><td>0.242 <span class="sd">± 0.027</span></td><td>0.605 <span class="sd">± 0.012</span></td></tr>
+                <tr><td>SpatialEx</td><td class="text-left">Single-cell</td><td>0.094 <span class="sd">± 0.009</span></td><td>0.242 <span class="sd">± 0.031</span></td><td>0.642 <span class="sd">± 0.005</span></td></tr>
+                <tr><td>Ours (frozen)</td><td class="text-left">Single-cell</td><td>0.161 <span class="sd">± 0.016</span></td><td>0.271 <span class="sd">± 0.034</span></td><td>0.786 <span class="sd">± 0.005</span></td></tr>
+                <tr class="highlight-row"><td>Ours (LoRA)</td><td class="text-left">Single-cell</td><td>0.174 <span class="sd">± 0.014</span></td><td>0.280 <span class="sd">± 0.033</span></td><td>0.800 <span class="sd">± 0.009</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Full 5K panel. Mean ± SD across five block-level test folds. Native granularity is the resolution each model was trained at; all methods were evaluated on the single-cell task.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 7. Analysis -->
+    <section class="section" id="analysis">
+      <div class="content-shell">
+        <div class="section-heading centered">
+          <h2>Where single-cell adaptations help most</h2>
+          <p>Aggregate metrics can hide variation across cell populations and gene programs. We assessed whether our adaptations improve performance uniformly or preferentially benefit specific cell types and biological pathways.</p>
+        </div>
+
+        <!-- Cell types -->
+        <figure class="paper-figure figure-box">
+          <img src="assets/figures/fig5_celltype.png" alt="Cell-type analyses showing gains across adaptations, per-cell performance by cell type, and representative H&amp;E regions for an epithelial cell and a stromal cell." loading="lazy">
+          <figcaption>
+            <strong>Stromal cells benefit most from single-cell adaptations.</strong>
+            (a) Gain in per-cell PCC over the baseline at each adaptation step, by cell type. (b) Per-cell PCC of our model by cell type. (c) Example H&amp;E regions around an epithelial cell and a stromal cell.
+          </figcaption>
+        </figure>
+
+        <div class="insight-grid">
+          <article class="wide-card">
+            <h3>Stromal cells gain the most from cell-localized features</h3>
+            <p>The MLP decoder improves performance broadly across cell types, but cell-localized token pooling particularly benefits stromal cells. Stromal cells are heterogeneous and interact with diverse cellular and extracellular components, so isolating target-cell features helps. Epithelial cells gain the least potentially because their cohesive, distinctive architecture already gives strong cues in global tile-level features.</p>
+          </article>
+        </div>
+
+        <!-- Pathways -->
+        <figure class="paper-figure figure-box pathway-figure">
+          <img src="assets/figures/app11_pathway.png" alt="REACTOME pathway enrichment for the 500 most improved genes, led by extracellular matrix organization, and the 500 least improved genes, led by GPCR ligand binding and neuronal system pathways." loading="lazy">
+          <figcaption>
+            <strong>Pathway enrichment of the most and least improved genes.</strong>
+            REACTOME enrichment, computed with g:Profiler, among (a) the 500 most improved and (b) the 500 least improved genes relative to the baseline.
+          </figcaption>
+        </figure>
+
+        <div class="insight-grid">
+          <article class="wide-card">
+            <h3>Genes tied to tissue architecture improve most</h3>
+            <p>The most improved genes are enriched for extracellular matrix organization, cell junctions, adhesion, and cell–cell communication. These processes are closely linked to tissue architecture and local cellular interactions, consistent with the gains seen in stromal cells.</p>
+          </article>
+          <article class="limits-card wide-card">
+            <h3>Some cells and programs remain hard to predict from morphology</h3>
+            <p>T lymphocytes showed modest gains, likely due to their small size and uniform nuclear morphology. Poorly predicted genes were enriched for GPCR and neurotransmitter signaling, potentially reflecting transient states beyond histological resolution. Data sparsity and low detection rates may also contribute, making these enrichments hypothesis-generating rather than definitive evidence of morphological predictability.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Conclusion -->
+    <section class="section soft-section" id="conclusion" aria-labelledby="conclusion-title">
+      <div class="text-shell">
+        <h2 id="conclusion-title">Conclusion</h2>
+        <p class="conclusion-text">Our work establishes a foundation for adapting pathology foundation models to single-cell spatial transcriptomics. We demonstrate that carefully chosen, lightweight modifications to baseline foundation model approaches, rather than extensive architectural or methodological redesign, can enable scalable and interpretable molecular profiling from routine histology.</p>
+    </section>
+
+    <!-- 9. Citation -->
+    <section class="section citation-section" id="citation">
+      <div class="text-shell">
+        <div class="citation-heading">
+          <div>
+            <h2>BibTeX</h2>
+          </div>
+          <button class="copy-button" id="copy-citation" type="button">Copy citation</button>
+        </div>
+        <pre id="bibtex"><code>@inproceedings{tsang2026singlecell,
+  title     = {Predicting Single-Cell Spatial Gene Expression from H\&amp;E using Pathology Foundation Models},
+  author    = {Tsang, Ashley P. and Liu, Evan and Foo, Conrad and Chen, Bob and Maan, Hassaan and Chan, Donny and Penna, Elisa and Ibarra Lopez, Veronica and Corrada Bravo, Hector and BenTaieb, A{\"i}cha and McGinnis, Lisa M. and Wei, Runmin and Gao, Kenneth T.},
+  booktitle = {NeurIPS Workshop on AI at Scale for Clinical Impact},
+  year      = {2026}
+}</code></pre>
+      </div>
+    </section>
   </main>
-  <script>
-    const js = document.getElementById("js");
-    js.textContent = "Running";
-    js.className = "ok";
-    document.getElementById("time").textContent = new Date().toLocaleTimeString();
-    let n = 0;
-    document.getElementById("btn").addEventListener("click", () => {
-      n++;
-      document.getElementById("count").textContent = n + (n === 1 ? " click" : " clicks");
-    });
-  </script>
+
+  <footer class="site-footer">
+    <p>Predicting Single-Cell Spatial Gene Expression from H&amp;E using Pathology Foundation Models</p>
+    <p>NeurIPS 2026 Workshop on AI at Scale for Clinical Impact</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
