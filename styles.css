@@ -1000,10 +1000,12 @@ pre {
   text-wrap: pretty;
 }
 
-.conclusion-text {
-  text-align: center;
-}
-
 #abstract .text-shell {
   max-width: 840px;
+}
+
+.conclusion-text {
+  text-align: justify;
+  text-align-last: center;
+  text-wrap: pretty;
 }
